@@ -14,7 +14,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap/all";
 import Overflow from "../../utils/Overflow";
 import AllProjects from "./AllProjects";
-import Footer from "../Home/Footer";
 
 type WorkSpaceProps = {
   setLogoColor: React.Dispatch<React.SetStateAction<string>>;
@@ -530,7 +529,6 @@ const WorkShowCase = memo(({ setLogoColor }: WorkSpaceProps) => {
           currentNumber={currentNumber}
           showMoreProject={showMoreProject}
         />
-        <Footer />
       </motion.div>
     </motion.div>
   );
