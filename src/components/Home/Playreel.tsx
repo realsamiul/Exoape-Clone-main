@@ -75,7 +75,7 @@ const Playreel = memo(() => {
           <h2 className="text-sm">Work in motion</h2>
         </div>
 
-        <h2 className="w-full flex items-center justify-center gap-16 sm:gap-[42%] will-change-transform">
+        <h2 className="w-full flex items-center justify-center gap-32 sm:gap-[42%] will-change-transform">
           <div className="text-5xl sm:text-9xl">Play</div>
           <div className="text-5xl sm:text-9xl">Reel</div>
         </h2>

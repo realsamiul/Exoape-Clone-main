@@ -23,8 +23,9 @@ const Story = memo(({
       scrollTrigger: {
         trigger: `#story`,
         scroller: "#homeFixedContainer",
-        start: "top bottom",
-        end: "bottom bottom",
+        pin: true,
+        start: "top top",
+        end: "+=100%",
         scrub: 1.5,
         invalidateOnRefresh: true,
       },
