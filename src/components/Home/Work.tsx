@@ -9,7 +9,21 @@ import workvid2 from "../../assets/workvid2.mp4";
 import workvid3 from "../../assets/workvid3.mp4";
 import workvid4 from "../../assets/workvid4.mp4";
 
-const WorkItem = memo(({ item, index, setCursorProps }: any) => {
+interface WorkItemProps {
+  item: {
+    heading: string;
+    subHeading: string;
+    video: string;
+    image: string;
+  };
+  index: number;
+  setCursorProps: React.Dispatch<React.SetStateAction<{
+    text: string;
+    isVisible: boolean;
+  }>>;
+}
+
+const WorkItem = memo(({ item, index, setCursorProps }: WorkItemProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleHoverStart = useCallback(() => {
@@ -29,7 +43,7 @@ const WorkItem = memo(({ item, index, setCursorProps }: any) => {
       key={item.heading}
       className="elem w-full sm:w-[48%] overflow-hidden mb-10 cursor-pointer"
     >
-      <div className="video peer relative w-full h-[104vw] sm:h-[40vw] overflow-hidden will-change-transform">
+      <div className="video peer relative w-full h-[104vw] sm:h-[40vw] overflow-hidden will-change-transform group">
         <motion.img
           animate={{ opacity: isHovered ? 0 : 1 }}
           transition={{ ease: "linear", duration: 0.25 }}
@@ -39,17 +53,18 @@ const WorkItem = memo(({ item, index, setCursorProps }: any) => {
           decoding="async"
         />
         <video
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover will-change-transform"
           src={item.video}
           autoPlay
           muted
           loop
           playsInline
           preload={index < 2 ? "auto" : "none"}
+          poster={item.image}
         />
       </div>
 
-      <div className="description sm:opacity-0 peer-hover:opacity-100 transition-opacity duration-300 mt-3 sm:flex sm:items-center sm:gap-1">
+      <div className="description sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-3 sm:flex sm:items-center sm:gap-1">
         <h1 className="capitalize font-medium sm:text-sm">
           {item.heading}
         </h1>
