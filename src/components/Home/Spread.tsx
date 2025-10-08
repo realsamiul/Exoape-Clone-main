@@ -1,7 +1,8 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap/all";
+import { memo } from "react";
 
-const Spread = () => {
+const Spread = memo(() => {
   useGSAP(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -9,19 +10,21 @@ const Spread = () => {
         scroller: "#homeFixedContainer",
         start: "top bottom",
         end: "bottom bottom",
-        scrub: true,
-        // markers: true,
+        scrub: 1.5,
+        invalidateOnRefresh: true,
       },
     });
     tl.to("#spreadContent", {
       yPercent: -50,
+      ease: "none",
     });
   });
+
   return (
     <div id="spread" className="w-full">
       <div
         id="spreadContent"
-        className=" max-w-screen-2xl flex flex-col items-center mx-auto bg-white"
+        className="max-w-screen-2xl flex flex-col items-center mx-auto bg-white will-change-transform px-5"
       >
         <div className="flex items-center gap-3">
           <svg
@@ -41,7 +44,7 @@ const Spread = () => {
         <div className="text text-center mt-7">
           <h1 className="text-6xl sm:text-[9rem] tracking-tighter">Spread</h1>
           <h1 className="text-6xl sm:text-[9rem] tracking-tighter">the News</h1>
-          <p className="text-lg sm:text-2xl sm:mt-10 mt-6 leading-[1.5rem] w-2/3 mx-auto">
+          <p className="text-lg sm:text-2xl sm:mt-10 mt-6 leading-[1.5rem] w-full sm:w-2/3 mx-auto">
             Find out more about our work on these leading design and technology
             platforms.
           </p>
@@ -55,6 +58,8 @@ const Spread = () => {
       </div>
     </div>
   );
-};
+});
+
+Spread.displayName = "Spread";
 
 export default Spread;

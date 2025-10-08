@@ -7,7 +7,7 @@ import WorkShowCase from "./components/Work/WorkShowCase";
 import { AnimatePresence } from "framer-motion";
 import Loader from "./components/Loader";
 
-const App = memo(() => {
+const App = () => {
   const [logoColor, setLogoColor] = useState("#fff");
   const [cursorProps, setCursorProps] = useState({
     text: "Scroll",
@@ -48,6 +48,7 @@ const App = memo(() => {
       clearTimeout(timeoutId);
     };
   }, []);
+
   return (
     <div
       id="parentWrapper"
@@ -84,8 +85,6 @@ const App = memo(() => {
       {!isLoading && !isMobile && <Cursor cursorProps={cursorProps} />}
     </div>
   );
-});
-
-App.displayName = "App";
+};
 
 export default memo(App);

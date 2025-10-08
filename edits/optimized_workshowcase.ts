@@ -22,7 +22,7 @@ type WorkSpaceProps = {
 const WorkShowCase = memo(({ setLogoColor }: WorkSpaceProps) => {
   const absoluteStyle = "absolute inset-0 overflow-hidden";
   const [currentNumber, setCurrentNumber] = useState(1);
-  const [direction, setDirection] = useState(1); // 1 for down, -1 for up
+  const [direction, setDirection] = useState(1);
   const tl = useRef<gsap.core.Timeline>();
   const [isInitialRender, setIsInitialRender] = useState(true);
   const [showMoreProject, setShowMoreProject] = useState(false);
@@ -88,10 +88,8 @@ const WorkShowCase = memo(({ setLogoColor }: WorkSpaceProps) => {
   Overflow(".headings h2 span", 0, 1.2, [currentNumber, direction]);
   Overflow(".headings p span", 0.5, 1.2, [currentNumber, direction]);
 
-  // Scroll animations
   useGSAP(
     () => {
-      // Project Elements
       const currentprojectContainers = document.querySelector(
         `[data-currentelement="true"]`
       );
@@ -104,22 +102,18 @@ const WorkShowCase = memo(({ setLogoColor }: WorkSpaceProps) => {
       const outprojectImgContainer =
         outprojectContainers?.querySelector(".projectWrap");
 
-      //Thumbnail Elements
       const currentThumbnail = document.querySelector(
         `[data-currentthumbnail="true"]`
       );
-
       const currentThumbnailImgContainer =
         currentThumbnail?.querySelector(".thumbnailImage");
 
       const outgoingThumbnail = document.querySelector(
         `[data-outgoingthumbnail="true"]`
       );
-
       const outgoingThumbnailImgContainer =
         outgoingThumbnail?.querySelector(".thumbnailImage");
 
-      // Create new timeline
       tl.current = gsap.timeline({
         defaults: {
           duration: 1.2,
@@ -137,21 +131,20 @@ const WorkShowCase = memo(({ setLogoColor }: WorkSpaceProps) => {
         },
       });
 
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      currentThumbnail &&
+      if (currentThumbnail) {
         tl.current.set([currentprojectContainers, currentThumbnail], {
           display: "block",
           zIndex: 1,
         });
+      }
 
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      outgoingThumbnail &&
+      if (outgoingThumbnail) {
         tl.current.set([outprojectContainers, outgoingThumbnail], {
           display: "block",
           zIndex: 2,
         });
+      }
 
-      // Animating Projects
       tl.current.fromTo(
         outprojectContainers,
         {
@@ -165,7 +158,6 @@ const WorkShowCase = memo(({ setLogoColor }: WorkSpaceProps) => {
             direction === 1
               ? "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)"
               : "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
-
           onComplete: () => {
             gsap.set(outprojectContainers, {
               display: "none",
@@ -174,7 +166,7 @@ const WorkShowCase = memo(({ setLogoColor }: WorkSpaceProps) => {
           },
         }
       );
-      // Animating Thumbnail Container
+
       tl.current.fromTo(
         outgoingThumbnail,
         {
@@ -188,7 +180,6 @@ const WorkShowCase = memo(({ setLogoColor }: WorkSpaceProps) => {
             direction === 1
               ? "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)"
               : "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-
           onComplete: () => {
             gsap.set(outprojectContainers, {
               display: "none",
@@ -199,7 +190,6 @@ const WorkShowCase = memo(({ setLogoColor }: WorkSpaceProps) => {
         0
       );
 
-      // Project current img container
       tl.current.from(
         currentprojectImgContainer as Element,
         {
@@ -208,7 +198,6 @@ const WorkShowCase = memo(({ setLogoColor }: WorkSpaceProps) => {
         0
       );
 
-      // Thumbnail current img container
       tl.current.from(
         currentThumbnailImgContainer as Element,
         {
@@ -217,7 +206,6 @@ const WorkShowCase = memo(({ setLogoColor }: WorkSpaceProps) => {
         0
       );
 
-      // Project outgoing img container
       tl.current.to(
         outprojectImgContainer as Element,
         {
@@ -228,7 +216,6 @@ const WorkShowCase = memo(({ setLogoColor }: WorkSpaceProps) => {
         0
       );
 
-      // Thumbnail outgoing img container
       tl.current.to(
         outgoingThumbnailImgContainer as Element,
         {
@@ -240,7 +227,6 @@ const WorkShowCase = memo(({ setLogoColor }: WorkSpaceProps) => {
     { dependencies: [currentNumber, direction], revertOnUpdate: true }
   );
 
-  // Animations WorkShowCase -> All Projects
   useGSAP(
     () => {
       if (showMoreProject) {
@@ -292,7 +278,7 @@ const WorkShowCase = memo(({ setLogoColor }: WorkSpaceProps) => {
             clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
             duration: 0.3,
           }
-        ); // Empty tween for delay
+        );
 
         tl2.fromTo(
           "#experience",
@@ -323,7 +309,6 @@ const WorkShowCase = memo(({ setLogoColor }: WorkSpaceProps) => {
   );
 
   const getOutgoingElement = (id: number) => {
-    // Return false on initial render
     if (isInitialRender) return false;
 
     if (direction === 1) {
@@ -345,6 +330,7 @@ const WorkShowCase = memo(({ setLogoColor }: WorkSpaceProps) => {
   const handleShowMoreProject = useCallback(() => {
     setShowMoreProject((prev) => !prev);
   }, []);
+
   return (
     <motion.div
       key={"home"}
@@ -451,7 +437,7 @@ const WorkShowCase = memo(({ setLogoColor }: WorkSpaceProps) => {
             onClick={handleShowMoreProject}
           >
             <motion.svg
-              className=" w-4 h-4"
+              className="w-4 h-4"
               viewBox="0 0 9 13"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
