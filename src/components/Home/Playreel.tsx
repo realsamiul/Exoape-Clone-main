@@ -59,7 +59,7 @@ const Playreel = memo(() => {
         ></video>
       </div>
 
-      <div className="overlay absolute flex flex-col justify-between w-full h-full text-[#e4e0db] py-10 sm:py-20 px-5">
+      <div className="overlay absolute flex flex-col justify-center items-center w-full h-full text-[#e4e0db] py-10 sm:py-20 px-5">
         <div className="flex items-center justify-center gap-2">
           <svg
             className="size-3"

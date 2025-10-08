@@ -157,15 +157,6 @@ const Navbar = memo(({
                 Work
               </a>
             </Link>
-            <Link style={{ color: logoColor }} className="text-sm lg:text-base font-light" to={"https://www.exoape.com/"} target="_blank">
-              Original
-            </Link>
-            <Link to={"https://github.com/yashsarode45/Exoape-Clone"} target="_blank">
-              <FaGithub style={{ color: logoColor }} className="w-5 h-5 hover:opacity-70 transition-opacity" />
-            </Link>
-            <Link to={"https://www.linkedin.com/in/yashsarode/"} target="_blank">
-              <FaLinkedin style={{ color: logoColor }} className="w-5 h-5 hover:opacity-70 transition-opacity" />
-            </Link>
           </div>
         </div>
       </div>

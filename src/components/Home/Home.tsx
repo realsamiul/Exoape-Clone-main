@@ -5,6 +5,7 @@ import Playreel from "./Playreel";
 import Images from "./Images";
 import Spread from "./Spread";
 import Story from "./Story";
+import Footer from "./Footer";
 import { motion } from "framer-motion";
 import { useLenisGsap } from "../hooks/useLenisGsap";
 import {
@@ -51,6 +52,7 @@ const Home = ({ setCursorProps, setLogoColor }: HomeProps) => {
           <Images />
           <Spread />
           <Story setLogoColor={setLogoColor} />
+          <Footer />
         </div>
       </motion.div>
     </motion.div>
